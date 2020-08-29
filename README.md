@@ -105,15 +105,11 @@ If you found this code useful, please cite the following paper:
 ```
 
 ## Code References
-[kan-bayashi/ParallelWaveGAN](https://github.com/kan-bayashi/ParallelWaveGAN)
-
-[marl/crepe](https://github.com/marl/crepe)
-
-[magenta/ddsp](https://github.com/magenta/ddsp)
-
-[justinsalamon/melosynth](https://github.com/justinsalamon/melosynth)
-
-[facebookresearch/hydra](https://github.com/facebookresearch/hydra)
+- [kan-bayashi/ParallelWaveGAN](https://github.com/kan-bayashi/ParallelWaveGAN)
+- [marl/crepe](https://github.com/marl/crepe)
+- [magenta/ddsp](https://github.com/magenta/ddsp)
+- [justinsalamon/melosynth](https://github.com/justinsalamon/melosynth)
+- [facebookresearch/hydra](https://github.com/facebookresearch/hydra)
 
 ## Acknowledgement
 Credit to Adam Polyak for PyTorch CREPE pitch-extraction implementation and helpful discussions.
