@@ -19,53 +19,83 @@ hence using the generator as a Neural-Source-Filtering network rather than a cla
 * Timbre Painting - The next phase is composed of timbre painting networks: each network gets as input the previously generated audio and serves as a 
 learnable upsample network. Each timbre-painting networks adds sample-rate specific details to the audio clip.
 
-ADD IMAGE HERE
+![](./architecture.png)
 
 ## Dependencies
-A conda environment file is available in the repository.
-* Python 3.6 +
-* Pytorch 1.0
-* Torchvision
-* librosa
-* tqdm
-* scipy
-* soundfile
+The needed packages are given in ```requirements.txt```
+
+Using a virtual enviroment is recommended:
+```
+virtualenv -p python3 .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+To use distributed runs, please install [apex](https://github.com/NVIDIA/apex)
 
 ## Usage
 
-### 1. Cloning the repository & setting up conda environment
+Hydra is used for configuration and experiments mangement, for more info refer https://hydra.cc/
+
+### 1. Cloning the repository
 ```
-$ git clone https://github.com/mosheman5/DNP.git
-$ cd DNP/
-```
-For creating and activating the conda environment:
-```
-$ conda env create -f environment.yml
-$ conda activate DNP
+$ git clone https://github.com/mosheman5/timbre_painting.git
+$ cd timbre_painting
 ```
  
-### 2. Testing
+### 2. Data Preparation
 
-To test on the demo speech file:
+#### URMP Dataset
+To download the [URMP dataset](https://ieeexplore.ieee.org/document/8411155) used in our paper please fill the [form](https://docs.google.com/forms/d/e/1FAIpQLSdGQx4Q0G4yIT0WDj1cAlfcAq8VZNcV7ZGKqRj8ijgCOzd1lg/viewform)
 
+After download extract the content of the file to a folder named ```urmp```
+and run the following script to preprocess the data:
 ```
-$ python DNP.py --run_name demo --noisy_file demo.wav --samples_dir samples --save_every 50 --num_iter 5000 --LR 0.001
+python create_data_urmp.py
 ```
 
-To test on any other audio file insert the file path after the ```--noisy_file``` option.
+#### Other datasets
 
-A jupyter notebook with visualization is available: ```dnp.ipynb```
+To train the model on any other datasets of monophonic instruments, copy the audio files to ```data_tmp``` directory, 
+each instrument in a different folder, and run:
+```
+python create_data_urmp.py urmp=null
+```
+Default parameters are given at ```conf/data_config.yaml```, overrides should be given in command line. 
 
-## Reference
+Please note the default parameters are defined for URMP dataset, for other datasets tuning might be needed (especially the ```data_processor.params.confidence_threshold``` and ```data_processor.params.silence_thresh_dB``` parameters)
+
+### 3. Training
+
+To Train with the original paper's parameters run:
+```
+python main.py
+```
+Default parameters are given at ```conf/runs/main.yaml```, overrides should be given in command line. 
+
+for example, the following line runs an experiment on a dataset folder named 'flute' for 400 epochs and batch_size of 4:
+```
+python main.py paths.input_data=data.flute optim.epochs=400 optim.batch_size=4
+```
+
+
+### 4. Timbre Trasnfer
+
+To Train on the original paper 
+
+
+## Citation
 If you found this code useful, please cite the following paper:
 ```
-@article{michelashvili2020denoising,
-  title={Speech Denoising by Accumulating Per-Frequency Modeling Fluctuations},
+@inproceedings{michelashvili2020timbre-painting,
+  title={Hirearchical Timbre-Painting and Articulation Generation},
   author={Michael Michelashvili and Lior Wolf},
-  journal={arXiv preprint arXiv:1904.07612},
+  journal={21st International Society for Music Information Retrieval (ISMIR2020)},
   year={2020}
 }
 ```
 
+## Code References
+
+
 ## Acknowledgement
-The implemantation of the network architecture is taken from [Wave-U-Net](https://github.com/f90/Wave-U-Net)
+Credit to Adam Polyak for PyTorch CREPE pitch-extraction implementation and helpful discussions.
