@@ -1,0 +1,11 @@
+exp_name: 'try_me'
+norm_loudness_flag: True
+unvoiced_flag: True
+trained_dirpath: 'outputs/main/2020-08-28_08-06-15'
+input_dirpath: 'testset'
+crepe_path: 'data_utils/crepe_models/full.pth'
+octaves: [-2, -1, 0, 1, 2]
+
+hydra:
+  run:
+    dir: outputs/null

@@ -1,0 +1,81 @@
+workspace:
+  workers: 0 # number of workers to use
+  cuda: 1 # use cuda flag
+  manualSeed: 1234 # manual seed for CUDA and other random parts of the model
+
+paths:
+  checkpoint:
+  input_data: data/violin
+
+optim:
+  disc_start: 0.25
+  type: adam
+  epochs: 2
+  niter: 2
+  gamma: 0.5
+  lr_g: 0.0005
+  lr_d: 0.0001
+  beta1: 0.5
+  Dsteps: 1
+  Gsteps: 1
+  hp_recon: 1
+  hp_adv: 1
+  hp_f0: 1
+  batch_size: 16
+  batch_size_min: 2
+  dataset_len: 1000000000
+  num_workers: 0
+  use_prev_weights: True
+
+generator_params:
+    in_channels: 1        # Number of input channels.
+    out_channels: 1       # Number of output channels.
+    kernel_size: 3        # Kernel size of dilated convolution.
+    layers: 30            # Number of residual block layers.
+    stacks: 3             # Number of stacks i.e., dilation cycles.
+    residual_channels: 64 # Number of channels in residual conv.
+    gate_channels: 128    # Number of channels in gated conv.
+    skip_channels: 64     # Number of channels in skip conv.
+    aux_channels: 80      # Number of channels for auxiliary feature conv.
+                          # Must be the same as num_mels.
+    aux_context_window: 0 # Context window size for auxiliary feature.
+                          # If set to 2, previous 2 and future 2 frames will be considered.
+    dropout: 0.0          # Dropout rate. 0.0 means no dropout applied.
+    use_weight_norm: true # Whether to use weight norm.
+                          # If set to true, it will be applied to all of the conv layers.
+    upsample_conditional_features: True
+    upsample_net: "ConvInUpsampleNetwork" # Upsampling network architecture.
+    upsample_params:                      # Upsampling network parameters.
+        upsample_scales: [2, 2, 2, 4]     # Upsampling scales. Prodcut of these must be the same as hop size.
+    affine: False
+    norm: True
+
+discriminator_params:
+    in_channels: 1        # Number of input channels.
+    out_channels: 1       # Number of output channels.
+    kernel_size: 3        # Number of output channels.
+    layers: 10            # Number of conv layers.
+    conv_channels: 64     # Number of chnn layers.
+    bias: true            # Whether to use bias parameter in conv.
+    use_weight_norm: true # Whether to use weight norm.
+                          # If set to true, it will be applied to all of the conv layers.
+    nonlinear_activation: "LeakyReLU" # Nonlinear function after each conv.
+    nonlinear_activation_params:      # Nonlinear function parameters
+        negative_slope: 0.2           # Alpha in LeakyReLU.
+
+max_val: False
+max_val_f0: 0.5
+sr: 16000
+scale_factor: 0.5
+num_scales: 3
+cond_freq: 500
+duration: 2  # duration in seconds
+noise: 0.003
+log_audio: False
+cache: False
+
+hydra:
+  job:
+    name: debug
+  run:
+    dir: outputs/${hydra.job.name}/${now:%Y-%m-%d_%H-%M-%S}

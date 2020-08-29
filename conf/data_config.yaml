@@ -1,0 +1,47 @@
+urmp:
+  source_folder: 'urmp'
+  use: true
+  instruments:
+    'vn': 'violin'
+    'va': 'viola'
+    'vc': 'cello'
+    'db': 'double_bass'
+    'fl': 'flute'
+    'ob': 'oboe'
+    'cl': 'clarinet'
+    'sax': 'saxophone'
+    'bn': 'bassoon'
+    'tpt': 'trumpet'
+    'hn': 'horn'
+    'tbn': 'trombone'
+    'tba': 'tuba'
+  mono_regex: 'AuSep'
+source_folder: null
+num_workers: 4
+input_dir: 'data_tmp'
+output_dir: 'data'
+srs: [2000, 4000, 8000, 16000]
+
+data_processor:
+  class: data_utils.ProcessData
+  params:
+    silence_thresh_dB: 40
+    srs: ${srs}
+    device: 'cuda'
+    crepe_model: 'full'
+    crepe_path: 'data_utils/crepe_models'  # tmp hack
+    seq_len: 3
+    max_len: 4
+    confidence_threshold: 0.85
+    loudness:
+      nfft: 2048
+      hop_size: 64
+
+hydra:
+  run:
+    dir: outputs/null
+
+
+
+
+
