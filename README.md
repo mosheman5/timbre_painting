@@ -77,10 +77,20 @@ for example, the following line runs an experiment on a dataset folder named 'fl
 python main.py paths.input_data=data.flute optim.epochs=400 optim.batch_size=4
 ```
 
+results are saved in the folder ```outputs/main/${%Y-%m-%d_%H-%M-%S}```
 
-### 4. Timbre Trasnfer
 
-To Train on the original paper 
+### 4. Timbre Transfer
+
+To transfer the timbre of your files using a trained network, run:
+```
+python timbre_transfer.py trained_dirpath={path/to/trained_model} input_dirpath={path/to/audio_sample_folder}
+```
+
+Default parameters are given at ```conf/transfer_config.yaml```.
+
+The generated files are saved in the experiment folder, in subdirectory ```generation``` 
+Each input is generated in 5 versions with varying octave range from [-2, 2]
 
 
 ## Citation
@@ -95,7 +105,12 @@ If you found this code useful, please cite the following paper:
 ```
 
 ## Code References
-
+[kan-bayashi/ParallelWaveGAN](https://github.com/kan-bayashi/ParallelWaveGAN)
+[marl/crepe](https://github.com/marl/crepe)
+[magenta/ddsp](https://github.com/magenta/ddsp)
+[justinsalamon/melosynth](https://github.com/justinsalamon/melosynth)
+[justinsalamon/melosynth](https://github.com/justinsalamon/melosynth)
+[facebookresearch/hydra](https://github.com/facebookresearch/hydra)
 
 ## Acknowledgement
 Credit to Adam Polyak for PyTorch CREPE pitch-extraction implementation and helpful discussions.
