@@ -1,0 +1,443 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>Samples for Hierarchical Timbre-Painting and Articulation Generation </title>
+    <style type="text/css">
+body, input, select, td, li, div, textarea, p {
+	font-size: 14px;
+	line-height: 16px;
+	font-family: verdana, arial, sans-serif;
+}
+
+body {
+	margin:5px;
+	background-color:white;
+}
+
+h1 {
+	font-size:16px;
+	font-weight:bold;
+}
+
+h2 {
+	font-size:14px;
+	font-weight:bold;
+}
+    </style>
+  </head>
+
+  <body>
+    <h1 align="center"> Samples for Hierarchical Timbre-Painting and Articulation Generation </h1>
+    <p> A comparison to the DDSP method is presented in the following audio samples.</p>
+    <p> We trained 4 model targets for timbre transfer:cello, saxophone, trumpet and violin. </p>
+    <p> The six source domains used for the MOS:clarinet, violin, female singer, male singer, trumpet and saxophone.</p>
+    <p> Our method shows better results both on target domain similarity and melody preservation.  </p>
+<h2 align="left">Audio Demo on Evaluation subset: (please use headphones for better evaluation)</h2>
+    <div>
+      <table border = "1" class="inlineTable">
+        <col width="200">
+        <col width="150">
+        <col width="150">
+        <col width="150">
+        <col width="150">
+        <col width="150">
+        <col width="150">
+        <col width="150">
+        <col width="150">
+        <col width="150">
+        <col width="150">
+        <col width="150">
+        <tr>
+        <tr>
+             <th> </th>
+             <th>Clarinet</th>
+             <th>Saxophone</th>
+             <th>Female Singer</th>
+             <th>Male Singer</th>
+             <th>Trumpet</th>
+	         <th>Violin</th>
+        </tr>
+
+        <tr>
+           <th> Inputs </th>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/origin/clarinet.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/origin/saxophone.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/origin/singing_female.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/origin/singing_male.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/origin/trumpet.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/origin/violin.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+        </tr>
+
+<tr>
+           <th> DDSP-Cello </th>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/ddsp/cello/clarinet.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/ddsp/cello/saxophone.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/ddsp/cello/singing_female.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/ddsp/cello/singing_male.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/ddsp/cello/trumpet.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/ddsp/cello/violin.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+        </tr>
+
+<tr>
+
+<tr>
+           <th> Our-Cello </th>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/our/cello/clarinet.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/our/cello/saxophone.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/our/cello/singing_female.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/our/cello/singing_male.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/our/cello/trumpet.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/our/cello/violin.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+        </tr>
+
+<tr>
+
+<tr>
+           <th> DDSP-Saxophone </th>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/ddsp/saxophone/clarinet.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/ddsp/saxophone/saxophone.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/ddsp/saxophone/singing_female.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/ddsp/saxophone/singing_male.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/ddsp/saxophone/trumpet.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/ddsp/saxophone/violin.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+        </tr>
+
+<tr>
+
+<tr>
+           <th> our-saxophone </th>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/our/saxophone/clarinet.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/our/saxophone/saxophone.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/our/saxophone/singing_female.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/our/saxophone/singing_male.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/our/saxophone/trumpet.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/our/saxophone/violin.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+        </tr>
+
+<tr>
+
+<tr>
+           <th> DDSP-Trumpet </th>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/ddsp/trumpet/clarinet.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/ddsp/trumpet/saxophone.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/ddsp/trumpet/singing_female.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/ddsp/trumpet/singing_male.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/ddsp/trumpet/trumpet.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/ddsp/trumpet/violin.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+        </tr>
+
+<tr>
+
+<tr>
+           <th> Our-trumpet </th>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/our/trumpet/clarinet.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/our/trumpet/saxophone.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/our/trumpet/singing_female.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/our/trumpet/singing_male.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/our/trumpet/trumpet.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/our/trumpet/violin.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+        </tr>
+
+<tr>
+
+<tr>
+           <th> DDSP-Violin </th>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/ddsp/violin/clarinet.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/ddsp/violin/saxophone.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/ddsp/violin/singing_female.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/ddsp/violin/singing_male.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/ddsp/violin/trumpet.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/ddsp/violin/violin.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+        </tr>
+
+<tr>
+
+<tr>
+           <th> Our-Violin </th>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/ddsp/violin/clarinet.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/ddsp/violin/saxophone.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/ddsp/violin/singing_female.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/ddsp/violin/singing_male.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/ddsp/violin/trumpet.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+           <td>
+             <audio controls style="width: 150px;">
+               <source src="audio_files/ddsp/violin/violin.wav" type="audio/wav">
+               Your browser does not support the audio element.
+             </audio>
+           </td>
+        </tr>
+
+<tr>
+
+
+<tr>
+      </table>
+    </div>
+
+  </body>
+</html>
