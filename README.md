@@ -1,4 +1,4 @@
-# Hirearchical Timbre-Painting and Articulation Generation
+# Hierarchical Timbre-Painting and Articulation Generation
 
 This repository provides an official PyTorch implementation of "Hirearchical Timbre-Painting and Articulation Generation"
 
@@ -106,10 +106,13 @@ If you found this code useful, please cite the following paper:
 
 ## Code References
 [kan-bayashi/ParallelWaveGAN](https://github.com/kan-bayashi/ParallelWaveGAN)
+
 [marl/crepe](https://github.com/marl/crepe)
+
 [magenta/ddsp](https://github.com/magenta/ddsp)
+
 [justinsalamon/melosynth](https://github.com/justinsalamon/melosynth)
-[justinsalamon/melosynth](https://github.com/justinsalamon/melosynth)
+
 [facebookresearch/hydra](https://github.com/facebookresearch/hydra)
 
 ## Acknowledgement
