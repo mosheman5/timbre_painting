@@ -1,6 +1,6 @@
 # Hierarchical Timbre-Painting and Articulation Generation
 
-This repository provides an official PyTorch implementation of "Hirearchical Timbre-Painting and Articulation Generation"
+This repository provides an official PyTorch implementation of "Hierarchical Timbre-Painting and Articulation Generation"
 
 Our method generates high-fidelity audio for a target instrument, based f0 and loudness signal.
 
