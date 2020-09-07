@@ -9,7 +9,7 @@ which enables us to convert the melody of any input instrument to the trained in
 
   [**Audio Samples**](https://mosheman5.github.io/timbre_painting/)
 | [**Paper**](https://arxiv.org/abs/2008.13095)
-| [**Pretrained Models**](https://Placeholder)
+| [**Pretrained Models**](#pretrained-models)
 
 
 We suggest seperating the generation process into two consecutive phases:
