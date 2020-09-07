@@ -141,7 +141,6 @@ def train(
 log = logging.getLogger(__name__)
 
 @hydra.main(config_path="conf/run_config.yaml", strict=True)
-# @hydra.main(config_path="outputs/default_wavegan/2020-03-01_17-12-03/.hydra/config.yaml", strict=False)
 def main(args):
     ## define distributed run
     dist_args= {'distributed': False}
