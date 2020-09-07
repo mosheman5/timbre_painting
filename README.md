@@ -8,7 +8,8 @@ During training, loudness and f0 signal are extracted from ground-truth signal,
 which enables us to convert the melody of any input instrument to the trained instrument - task also known as Timbre Transfer
 
   [**Audio Samples**](https://mosheman5.github.io/timbre_painting/)
-| [**Paper**](https://Placeholder)
+| [**Paper**](https://arxiv.org/abs/2008.13095)
+| [**Pretrained Models**](https://Placeholder)
 
 
 We suggest seperating the generation process into two consecutive phases:
@@ -79,7 +80,6 @@ python main.py paths.input_data=data.flute optim.epochs=400 optim.batch_size=4
 
 results are saved in the folder ```outputs/main/${%Y-%m-%d_%H-%M-%S}```
 
-
 ### 4. Timbre Transfer
 
 To transfer the timbre of your files using a trained network, run:
@@ -91,6 +91,19 @@ Default parameters are given at ```conf/transfer_config.yaml```.
 
 The generated files are saved in the experiment folder, in subdirectory ```generation``` 
 Each input is generated in 5 versions with varying octave range from [-2, 2]
+
+## Pretrained Models
+
+Pretrained models of instruments from URMP dataset are summarazied in the table.
+The models can be downloaded from the google drive links attached.
+Download the model, extract and follow [timbre transfer](#4-timbre-transfer) to generate audio.
+
+| Instrument
+| :------ 
+| [Violin](https://drive.google.com/uc?id=1KEodWMgtWLynBlMIZdSlIjGvrPJ2TpNQ&)
+| [Saxophone](https://drive.google.com/uc?id=1GNL1yCdGmcxSGdECtpUb5BqbRWSeyB6b)
+| [Trumpet](https://drive.google.com/uc?id=1SMJMnw7RorAymxQpoy_e2vUJlRH3Xmcy)
+| [Cello](https://drive.google.com/uc?id=1Nx4sUznH1cWUvDOdQLFd-v7ZZKKwQWZu)
 
 
 ## Citation
