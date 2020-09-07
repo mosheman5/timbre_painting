@@ -1,4 +1,4 @@
-exp_name: 'generation '
+exp_name: 'generation'
 norm_loudness_flag: True
 unvoiced_flag: True
 trained_dirpath: ''

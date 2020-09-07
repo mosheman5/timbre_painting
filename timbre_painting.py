@@ -11,6 +11,7 @@ import librosa
 from data_utils.spectral_feats import calc_loudness
 import json
 import os
+from tqdm import tqdm
 
 
 def load_norm_dicts(loudness_path):
@@ -39,7 +40,7 @@ def norm_loudness(loudness, norm_dict):
 
 
 def load_trained_pyramid(trained_dir, network_params, srs, device=None):
-
+    print('Loading pretrained weights')
     Gs = []
     dir_list = [trained_dir.joinpath(f'{x}') for x in range(0,len(srs))]
     for scale_num, directory in enumerate(dir_list):
@@ -88,7 +89,7 @@ def save_audios(output_dirpath, audio_outputs, filename, srs):
     for it, (audio_file, sr) in enumerate(zip(audio_outputs, srs)):
         audio_file = audio_file.clamp(-1, 1).squeeze().detach().cpu().numpy()
         sf.write(
-            output_dirpath.joinpath(f"{filename}_scale{it}.wav"),
+            output_dirpath.joinpath(f"{filename}_output.wav"),
             audio_file,
             sr
         )
@@ -143,8 +144,8 @@ def main(args):
     # Load Trained models
     Gs = load_trained_pyramid(trained_dirpath, network_params=run_args.generator_params, device=device, srs=srs)
 
-    for filepath in input_files:
-        for octave in octave_shifts:
+    for filepath in tqdm(input_files, desc='Generating audio file'):
+        for octave in tqdm(octave_shifts, desc='Octave'):
             real_audio = load_audio(filepath, sr, max_value)
             loudness_hop = 8 * sr // cond_freq
             real_audio = real_audio[:len(real_audio) // loudness_hop * loudness_hop]
