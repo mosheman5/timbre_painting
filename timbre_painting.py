@@ -13,9 +13,9 @@ import json
 import os
 
 
-def load_norm_dicts(dataset_path):
+def load_norm_dicts(loudness_path):
     norm_dicts = {}
-    with open(f'{dataset_path}/loudness.json', 'r') as fp:
+    with open(loudness_path, 'r') as fp:
         norm_dict = json.load(fp)
     for key, value in norm_dict.items():
         for k, v in value.items():
@@ -24,9 +24,9 @@ def load_norm_dicts(dataset_path):
 
 
 def shift_ld(loudness, ld_shift=0.0):
-  """Shift loudness for normalization"""
-  loudness += ld_shift
-  return loudness
+    """Shift loudness for normalization"""
+    loudness += ld_shift
+    return loudness
 
 
 def norm_loudness(loudness, norm_dict):
@@ -105,7 +105,7 @@ def main(args):
     os.chdir(CWD)
     # Load model args
     trained_dirpath = Path(args.trained_dirpath)
-    run_args = torch.load(trained_dirpath/ 'args.pth')
+    run_args = torch.load(trained_dirpath / 'args.pth')
 
     # define args from trained model
     sr = run_args.sr
@@ -114,7 +114,6 @@ def main(args):
     max_value = run_args.max_val
     max_value_f0 = run_args.max_val_f0
     cond_freq = run_args.cond_freq
-    dataset_path = run_args.paths.input_data
 
     # Convert filepaths
     input_dirpath = Path(args.input_dirpath)
@@ -135,7 +134,7 @@ def main(args):
     samplers = create_samplers(srs, device=device)
 
     if args.norm_loudness_flag:
-        norm_dicts = load_norm_dicts(dataset_path)
+        norm_dicts = load_norm_dicts(trained_dirpath / 'loudness.json')
     else:
         norm_dicts = None
 

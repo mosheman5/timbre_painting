@@ -15,6 +15,7 @@ import logging
 import hydra
 import sys
 import random
+from shutil import copy
 #
 # Train
 #
@@ -142,8 +143,6 @@ log = logging.getLogger(__name__)
 @hydra.main(config_path="conf/run_config.yaml", strict=True)
 # @hydra.main(config_path="outputs/default_wavegan/2020-03-01_17-12-03/.hydra/config.yaml", strict=False)
 def main(args):
-    ## save run args
-    torch.save(args, 'args.pth')
     ## define distributed run
     dist_args= {'distributed': False}
     if not torch.cuda.is_available():
@@ -178,6 +177,10 @@ def main(args):
     original_dirpath = Path(hydra.utils.get_original_cwd())
     input_path = original_dirpath.joinpath(args.paths.input_data)
     output_dirpath = Path.cwd()
+
+    ## save run args
+    torch.save(args, 'args.pth')
+    copy(input_path / 'loudness.json', output_dirpath / 'loudness.json')
 
     if args.paths.checkpoint:
         checkpoint = original_dirpath.joinpath(args.paths.checkpoint)
