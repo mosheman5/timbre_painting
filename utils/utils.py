@@ -8,6 +8,15 @@ from data_utils.crepe_pytorch import Crepe
 from data_utils.melosynth import melosynth_direct
 import soundfile as sf
 from utils.sampling import resample_torch
+import gdown
+import os
+import tarfile
+
+
+PRETRAINED_MODEL_DICT = {'Violin': '1KEodWMgtWLynBlMIZdSlIjGvrPJ2TpNQ&',
+                         'Saxophone': '1GNL1yCdGmcxSGdECtpUb5BqbRWSeyB6b',
+                         'Trumpet': '1SMJMnw7RorAymxQpoy_e2vUJlRH3Xmcy',
+                         'Cello': '1Nx4sUznH1cWUvDOdQLFd-v7ZZKKwQWZu'}
 
 
 def load_audio(filepath, sr, max_val=0.9):
@@ -102,7 +111,7 @@ def write_torch_audio(filename, audio_tensor, sr):
     sf.write(filename, audio_tensor, sr)
 
 
-class LossMeter(object):
+class LossMeter:
     def __init__(self, name):
         self.name = name
         self.losses = []
@@ -121,3 +130,25 @@ class LossMeter(object):
 
     def sum(self):
         return sum(self.losses)
+
+
+def download_pretrained_model(tag, download_dir='.'):
+    """Download pretrained model form google drive.
+    Args:
+        tag (str): Pretrained model tag.
+        download_dir (str): Directory to save downloaded files.
+    Returns:
+        str: Path of downloaded model checkpoint.
+    """
+    assert tag in PRETRAINED_MODEL_DICT, f"{tag} model does not exists."
+    id_ = PRETRAINED_MODEL_DICT[tag]
+    output_path = f"{download_dir}/{tag}.tar.gz"
+    os.makedirs(f"{download_dir}", exist_ok=True)
+    model_path = os.path.join(download_dir, tag.lower())
+    if not os.path.exists(output_path):
+        gdown.download(f"https://drive.google.com/uc?id={id_}", output_path, quiet=False)
+
+        with tarfile.open(output_path, 'r:*') as tar:
+            tar.extractall(download_dir)
+        assert os.path.exists(model_path), 'Download Error: no model was found'
+    return model_path
