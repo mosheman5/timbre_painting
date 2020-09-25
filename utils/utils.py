@@ -144,11 +144,14 @@ def download_pretrained_model(tag, download_dir='.'):
     id_ = PRETRAINED_MODEL_DICT[tag]
     output_path = f"{download_dir}/{tag}.tar.gz"
     os.makedirs(f"{download_dir}", exist_ok=True)
-    model_path = os.path.join(download_dir, tag.lower())
     if not os.path.exists(output_path):
         gdown.download(f"https://drive.google.com/uc?id={id_}", output_path, quiet=False)
 
-        with tarfile.open(output_path, 'r:*') as tar:
-            tar.extractall(download_dir)
-        assert os.path.exists(model_path), 'Download Error: no model was found'
+    with tarfile.open(output_path, 'r:*') as tar:
+        model_folder = tar.getnames()[0]
+        tar.extractall(download_dir)
+    model_path = os.path.join(download_dir, model_folder)
+    assert os.path.exists(os.path.join(model_path, 'args.pth')), 'args.pth file nor found. please use default checkpointing process'
+    assert os.path.isdir(model_path), 'Tar file contains more than main folder, please use default checkpointing process'
+
     return model_path
