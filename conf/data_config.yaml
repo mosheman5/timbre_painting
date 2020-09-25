@@ -23,7 +23,7 @@ output_dir: 'data'
 srs: [2000, 4000, 8000, 16000]
 
 data_processor:
-  class: data_utils.ProcessData
+  class: create_data_umtn.ProcessData
   params:
     silence_thresh_dB: 40
     srs: ${srs}
