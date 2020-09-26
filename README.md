@@ -1,5 +1,7 @@
 # Hierarchical Timbre-Painting and Articulation Generation
 
+<a href="https://colab.research.google.com/github/mosheman5/timbre_painting/blob/master/timbre_painting.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+
 This repository provides an official PyTorch implementation of "Hierarchical Timbre-Painting and Articulation Generation"
 
 Our method generates high-fidelity audio for a target instrument, based f0 and loudness signal.
@@ -10,6 +12,7 @@ which enables us to convert the melody of any input instrument to the trained in
   [**Audio Samples**](https://mosheman5.github.io/timbre_painting/)
 | [**Paper**](https://arxiv.org/abs/2008.13095)
 | [**Pretrained Models**](#pretrained-models)
+| [**Timbre Transfer Demo**](https://github.com/mosheman5/timbre_painting/blob/master/timbre_painting.ipynb)
 
 
 We suggest seperating the generation process into two consecutive phases:
