@@ -16,7 +16,8 @@ import tarfile
 PRETRAINED_MODEL_DICT = {'Violin': '1KEodWMgtWLynBlMIZdSlIjGvrPJ2TpNQ&',
                          'Saxophone': '1GNL1yCdGmcxSGdECtpUb5BqbRWSeyB6b',
                          'Trumpet': '1SMJMnw7RorAymxQpoy_e2vUJlRH3Xmcy',
-                         'Cello': '1Nx4sUznH1cWUvDOdQLFd-v7ZZKKwQWZu'}
+                         'Cello': '1Nx4sUznH1cWUvDOdQLFd-v7ZZKKwQWZu',
+                         'Violin_v2': '1KYQe2IV1Tq_qvJJa70eGo4Wd2qFsCsIX&'}
 
 
 def load_audio(filepath, sr, max_val=0.9):
