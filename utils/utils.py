@@ -59,7 +59,6 @@ class BaseAudio():
     def __init__(self, model_path, device, unvoiced_flag):
         self.device = device
         self.model = self.load_model(model_path)
-        self.unvoiced_flag = unvoiced_flag
 
     def load_model(self, model_path):
         py_model = Crepe('full')
@@ -70,12 +69,12 @@ class BaseAudio():
         py_model.to(self.device)
         return py_model
 
-    def extract_f0(self, audio_in, sr, numpy_flag=False, sampler=None):
+    def extract_f0(self, audio_in, sr, numpy_flag=False, sampler=None, unvoiced_flag=True):
         if numpy_flag:
             audio_in = torch.from_numpy(audio_in).to(self.device)
         with torch.no_grad():
             time, frequency, confidence, _ = predict(audio_in, sr, self.model, viterbi=True, sampler=sampler)
-            if self.unvoiced_flag:
+            if unvoiced_flag:
                 is_voiced = predict_voicing(confidence)
                 frequency *= is_voiced
         return time, frequency
@@ -97,8 +96,9 @@ class BaseAudio():
         return torch.from_numpy(audio_out).float()
 
     def forward(self, audio_in, sr, max_val, octave=1, sampler=None, return_raw=False, numpy_flag=False,
-                sr_out=None, len_audio=None):
-        time, frequency = self.extract_f0(audio_in, sr, sampler=sampler, numpy_flag=numpy_flag)
+                sr_out=None, len_audio=None, unvoiced_flag=True):
+        time, frequency = self.extract_f0(audio_in, sr, sampler=sampler, numpy_flag=numpy_flag,
+                                          unvoiced_flag=unvoiced_flag)
         audio_out = self.create_f0_audio(audio_in, sr, time, frequency * octave, max_val=max_val, sr_out=sr_out,
                                          len_audio=len_audio)
         if return_raw:
