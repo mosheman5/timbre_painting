@@ -54,7 +54,7 @@ To download the [URMP dataset](https://ieeexplore.ieee.org/document/8411155) use
 After download extract the content of the file to a folder named ```urmp```
 and run the following script to preprocess the data:
 ```
-python create_data_urmp.py
+python create_data.py
 ```
 
 #### Other datasets
@@ -62,7 +62,7 @@ python create_data_urmp.py
 To train the model on any other datasets of monophonic instruments, copy the audio files to ```data_tmp``` directory, 
 each instrument in a different folder, and run:
 ```
-python create_data_urmp.py urmp=null
+python create_data.py urmp=null
 ```
 Default parameters are given at ```conf/data_config.yaml```, overrides should be given in command line. 
 
@@ -87,7 +87,7 @@ results are saved in the folder ```outputs/main/${%Y-%m-%d_%H-%M-%S}```
 
 To transfer the timbre of your files using a trained network, run:
 ```
-python timbre_transfer.py trained_dirpath={path/to/trained_model} input_dirpath={path/to/audio_sample_folder}
+python timbre_painting.py trained_dirpath={path/to/trained_model} input_dirpath={path/to/audio_sample_folder}
 ```
 
 Default parameters are given at ```conf/transfer_config.yaml```.
