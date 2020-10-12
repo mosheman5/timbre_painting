@@ -12,7 +12,7 @@ which enables us to convert the melody of any input instrument to the trained in
   [**Audio Samples**](https://mosheman5.github.io/timbre_painting/)
 | [**Paper**](https://arxiv.org/abs/2008.13095)
 | [**Pretrained Models**](#pretrained-models)
-| [**Timbre Transfer Demo**](https://github.com/mosheman5/timbre_painting/blob/master/timbre_painting.ipynb)
+| [**Timbre Transfer Colab Demo**](https://github.com/mosheman5/timbre_painting/blob/master/timbre_painting.ipynb)
 
 
 We suggest seperating the generation process into two consecutive phases:
@@ -70,6 +70,8 @@ Please note the default parameters are defined for URMP dataset, for other datas
 
 ### 3. Training
 
+#### 3.1 Single GPU
+
 To Train with the original paper's parameters run:
 ```
 python main.py
@@ -82,6 +84,13 @@ python main.py paths.input_data=data.flute optim.epochs=400 optim.batch_size=4
 ```
 
 results are saved in the folder ```outputs/main/${%Y-%m-%d_%H-%M-%S}```
+
+#### 3.2 Mulriple GPUs / Machines
+DDP is supported in the code by Apex package. To run in distributed mode, use the following template:
+
+`python -m torch.distributed.launch --use_env --nproc_per_node {# of gpus} main.py {argument overrides}`
+
+It's possible to use `CUDA_VISIBLE_DEVICES=0,1` to choose the gpus to run on, in this example gpus 0,1 on the machine.
 
 ### 4. Timbre Transfer
 
