@@ -15,7 +15,7 @@ which enables us to convert the melody of any input instrument to the trained in
 | [**Timbre Transfer Colab Demo**](https://github.com/mosheman5/timbre_painting/blob/master/timbre_painting.ipynb)
 
 
-We suggest seperating the generation process into two consecutive phases:
+We suggest separating the generation process into two consecutive phases:
 * Articulation - We generate the backbone of the audio and the transition between notes. 
 This is done on a low sample rate from the given condition, loudness and f0 inputs. 
 We use a sine excitation based on the extracted f0 signal, 
