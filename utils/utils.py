@@ -150,7 +150,26 @@ def download_pretrained_model(tag, download_dir='.'):
 
     with tarfile.open(output_path, 'r:*') as tar:
         model_folder = tar.getnames()[0]
-        tar.extractall(download_dir)
+        def is_within_directory(directory, target):
+            
+            abs_directory = os.path.abspath(directory)
+            abs_target = os.path.abspath(target)
+        
+            prefix = os.path.commonprefix([abs_directory, abs_target])
+            
+            return prefix == abs_directory
+        
+        def safe_extract(tar, path=".", members=None, *, numeric_owner=False):
+        
+            for member in tar.getmembers():
+                member_path = os.path.join(path, member.name)
+                if not is_within_directory(path, member_path):
+                    raise Exception("Attempted Path Traversal in Tar File")
+        
+            tar.extractall(path, members, numeric_owner=numeric_owner) 
+            
+        
+        safe_extract(tar, download_dir)
     model_path = os.path.join(download_dir, model_folder)
     assert os.path.exists(os.path.join(model_path, 'args.pth')), 'args.pth file nor found. please use default checkpointing process'
     assert os.path.isdir(model_path), 'Tar file contains more than main folder, please use default checkpointing process'
